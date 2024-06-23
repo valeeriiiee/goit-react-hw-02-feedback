@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
 
 export class App extends Component {
   state = {
@@ -20,6 +21,11 @@ export class App extends Component {
     return total > 0 ? Math.round((good / total) * 100) : 0;
   };
 
+  // change state when button is clicked
+  handleClick = type => {
+    this.setState(prevState => ({ ...prevState, [type]: prevState[type] + 1 }));
+  };
+
   render() {
     const { good, neutral, bad } = this.state;
     const total = this.countTotalFeedback();
@@ -28,7 +34,12 @@ export class App extends Component {
 
     return (
       <div>
-        <section title="Please Leave Feedback"></section>
+        <section title="Please Leave A Feedback">
+          <FeedbackOptions
+            options={options}
+            onLeaveFeedback={this.handleClick}
+          />
+        </section>
       </div>
     );
   }
