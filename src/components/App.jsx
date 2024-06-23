@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
+import { Statistics } from './Statistics/Statistics';
 
 export class App extends Component {
   state = {
@@ -39,6 +40,13 @@ export class App extends Component {
             options={options}
             onLeaveFeedback={this.handleClick}
           />
+        </section>
+        <section title="Statistics">
+          {total > 0 ? (
+            <Statistics good={good} neutral={neutral} bad={bad} total={total} />
+          ) : (
+            <Notification />
+          )}
         </section>
       </div>
     );
